@@ -1,86 +1,108 @@
-cryptoquantai-core
-==================
+# 🧬 cryptoquantai-core
+### Core Infrastructure & Shared Utilities for the CryptoQuantAI Ecosystem
 
-Core Utilities, Base Classes, and Shared Infrastructure for the CryptoQuantAI Ecosystem
+`cryptoquantai-core` is the foundational library for the **CryptoQuantAI** ecosystem.  
+It provides shared utilities, configuration systems, abstract base classes, logging tools,  
+and common infrastructure used across all CryptoQuantAI repositories:
 
-cryptoquantai-core is the foundational library for the CryptoQuantAI organization.
-It provides all low-level infrastructure, shared utilities, and abstract interfaces used by:
+- cq-ohlcv – OHLCV data downloader  
+- cq-indicators – Technical indicators  
+- cq-backtester – Backtesting engine  
+- cq-trader – Live trading engine  
+- cq-tradingview – Chart rendering  
+- cq-aimodels – ML/DL models  
+- cq-aiagent – ChatGPT-driven trading agents  
 
-- cq-ohlcv – Fast OHLCV downloader
-- cq-indicators – Indicator library
-- cq-backtester – Backtesting engine
-- cq-trader – Live trading engine
-- cq-tradingview – Chart renderer
-- cq-aimodels – AI model training + inference
-- cq-aiagent – ChatGPT-driven trading agent
+This package ensures architectural consistency, performance reliability, and development simplicity.
 
-This package ensures consistency, stability, and clean architecture across the entire suite.
+---
 
-------------------------------------------------------------
-Features
-------------------------------------------------------------
+## 🚀 Features
 
-- Config system: YAML/JSON/TOML loader with layered fallback
-- Logging utilities: Unified logging across all modules
-- Environment loader: Safe .env loading and validation
-- Path utilities: Auto-created folders, cache mgmt, directory helpers
-- Error handling: Custom exceptions for predictable flow
-- Base abstract classes: DataLoaders, Indicators, Strategies, Models, Agents
-- Time utilities: Timestamp tools and timezone conversions
-- Type-safe settings dataclasses
-- Event Bus: Lightweight publish/subscribe messaging
+- ✅ Unified Logging (console + rotating file handlers)  
+- ✅ Configuration loader (YAML / JSON / TOML)  
+- ✅ Environment variable manager (.env support)  
+- ✅ Base classes for loaders, indicators, strategies, agents, and ML models  
+- ✅ Time utilities (timestamp helpers, TZ-safe conversion)  
+- ✅ Filesystem helpers (cache dirs, data dirs, auto-create paths)  
+- ✅ Custom exception framework  
+- ✅ Lightweight Event Bus for internal signaling  
 
-------------------------------------------------------------
-Installation
-------------------------------------------------------------
+Designed to be lightweight, dependency-free, and production-ready.
 
+---
+
+## 📦 Installation
+
+```bash
 pip install cryptoquantai-core
+```
 
-Or install full ecosystem:
+Or install as part of the entire ecosystem:
 
+```bash
 pip install cq-ohlcv cq-indicators cq-backtester cq-trader
+```
 
-cryptoquantai-core will install automatically.
+---
 
-------------------------------------------------------------
-Quick Start
-------------------------------------------------------------
+## 💡 Quick Start
 
-1. Load Config
-----------------
+### ✅ Load Config
+
+```python
 from cryptoquantai_core.config import load_config
+
 config = load_config("config.yaml")
 print(config)
+```
 
-2. Logger
-----------------
+---
+
+### ✅ Create Logger
+
+```python
 from cryptoquantai_core.logger import get_logger
-log = get_logger("example")
+
+log = get_logger("demo")
 log.info("Logger initialized!")
+```
 
-3. Paths
-----------------
-from cryptoquantai_core.paths import ensure_dir, get_data_dir
-data_dir = get_data_dir("ohlcv")
-ensure_dir(data_dir)
-print("Data folder:", data_dir)
+---
 
-4. Base Class Example
-----------------
+### ✅ Work with Paths
+
+```python
+from cryptoquantai_core.paths import get_data_dir, ensure_dir
+
+data_folder = get_data_dir("ohlcv")
+ensure_dir(data_folder)
+
+print("Data path:", data_folder)
+```
+
+---
+
+### ✅ Base Class Example
+
+```python
 from cryptoquantai_core.base import BaseDataLoader
 
 class MyLoader(BaseDataLoader):
     def load(self):
-        return {"message": "example"}
+        return {"status": "loaded"}
+```
 
-------------------------------------------------------------
-## Package Structure
-------------------------------------------------------------
+---
 
+## 🗂 Folder Structure
+
+```
 cryptoquantai-core/
 │
 ├── cryptoquantai_core/
 │   ├── __init__.py
+│   │
 │   ├── base/
 │   │   ├── base_data_loader.py
 │   │   ├── base_indicator.py
@@ -106,42 +128,40 @@ cryptoquantai-core/
 ├── tests/
 ├── examples/
 └── README.md
+```
 
-------------------------------------------------------------
-Philosophy
-------------------------------------------------------------
+---
 
-CryptoQuantAI ecosystem principles:
+## 📅 Roadmap
 
-- Modular – every package works independently
-- Extensible – add indicators, strategies, models easily
-- Fast – optimized utilities without heavy dependencies
-- Safe – predictable error handling across all repos
-- Production-ready – clean architecture for real trading systems
+- ✅ Standardized interfaces for all CryptoQuantAI modules  
+- ✅ Improved config merging system  
+- ⏳ Typed runtime validation for configs  
+- ⏳ Async event bus  
+- ⏳ Rust-accelerated utils via pyo3  
 
-------------------------------------------------------------
-Contributing
-------------------------------------------------------------
+---
 
-We welcome contributions.
-Follow:
+## 🤝 Contributing
 
-- Conventional commits
-- Black formatting
-- PEP8 coding standards
-- Typed function signatures
+We welcome contributions from developers, researchers, and traders.
 
-Submit PRs or open issues anytime.
+**Guidelines:**
 
-------------------------------------------------------------
-License
-------------------------------------------------------------
+- Follow PEP8 + type hints  
+- Format using **Black**  
+- Add docstrings  
+- Use meaningful commit messages  
+
+---
+
+## ⚖️ License
 
 MIT License — free for personal and commercial use.
 
-------------------------------------------------------------
-Maintained By
-------------------------------------------------------------
+---
 
-CryptoQuantAI Development Team
+## 👨‍💻 Maintained By
+
+**CryptoQuantAI Development Team**  
 AI-Powered Trading Infrastructure
